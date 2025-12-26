@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-class PermissionsSedder extends Seeder
+class PermissionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,9 +18,11 @@ class PermissionsSedder extends Seeder
     $userRole  = Role::firstOrCreate(['name' => 'user']);
 
     // Permissions
+    
     $permissions = [
-    // Catalog
+         // Catalog
         'manage books',
+        'manage book images',
         'manage authors',
         'manage genres',
         'manage languages',

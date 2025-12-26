@@ -11,7 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        //this is where global middleware is enforced 
+        $middleware->use([]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
