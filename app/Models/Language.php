@@ -16,4 +16,9 @@ class Language extends Model
     {
         return $this->hasMany(Book::class);
     }
+
+     public function translators()
+    {
+        return $this->hasMany(Translator::class, 'native_language_id');
+    }
 }
