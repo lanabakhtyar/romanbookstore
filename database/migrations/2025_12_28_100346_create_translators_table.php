@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('translators', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('native_language_id')->constrained('languages')->cascadeOnDelete();
+            $table->foreignId('native_language_id')->constrained('languages')->restrictOnDelete();
             $table->timestamps();
         });
     }
