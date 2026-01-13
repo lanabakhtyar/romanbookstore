@@ -25,6 +25,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->foreignId('book_id')->constrained()->cascadeOnDelete();
+            $table->unique(['post_id', 'book_id']); // Add this
         });
 
         Schema::create('post_translator', function (Blueprint $table) {
@@ -40,6 +41,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts_pivot_tables');
+        Schema::dropIfExists('author_post');
+        Schema::dropIfExists('book_post');
+        Schema::dropIfExists('post_translator');
     }
 };

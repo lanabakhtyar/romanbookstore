@@ -32,6 +32,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('social_tables');
+        Schema::dropIfExists('comments');
+        Schema::dropIfExists('post_like');
     }
 };

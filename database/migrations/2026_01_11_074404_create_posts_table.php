@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             // The "Owner" - We enforce the 'Admin' check in the Application Layer (Policy)
-            $table->foreignId('user_id')->constrained('users')->nullOnDelete();
+            $table->foreignId('user_id')->constrained('users')->nullable()->nullOnDelete();
 
             $table->string('title');
             $table->string('slug')->unique();
