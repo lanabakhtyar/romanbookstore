@@ -5,26 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Translator extends Model
+class Translator extends Model implements HasMedia
 {
-    //
+    use InteractsWithMedia, HasFactory;
 
-    use HasFactory;
+    protected $fillable = ['name', 'slug', 'native_language_id'];
 
-    protected $table ='translators';
-    protected $fillable =['name','native_language_id'];
+    public function getRouteKeyName() { return 'slug'; }
 
-
-
-    //each translator is associated with many books
-       public function books()
-    {
-        return $this->hasMany(Book::class);
+    // Register media for a profile photo if needed
+    public function registerMediaCollections(): void {
+        $this->addMediaCollection('avatar')->singleFile();
     }
 
-
-    //each translator had one native tongue 
-    public function language(){
+    public function language() {
         return $this->belongsTo(Language::class, 'native_language_id');
+    }
+
+    public function books() {
+        return $this->hasMany(Book::class);
     }
 }

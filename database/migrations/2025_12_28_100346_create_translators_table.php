@@ -14,7 +14,12 @@ return new class extends Migration
         Schema::create('translators', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('native_language_id')->constrained('languages')->restrictOnDelete();
+            $table->string('slug')->unique()->index(); // Added for SEO
+            // you cannot delete a language entry as long as there is a translator associated with it
+            $table->foreignId('native_language_id')
+                ->nullable() 
+                ->constrained('languages')
+                ->restrictOnDelete(); 
             $table->timestamps();
         });
     }
